@@ -9,11 +9,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-class CardDeliveryPozitiveTest {
+class CardDeliveryPozitiveTests {
 
     @Test
     void shouldRegisterTest1() {
@@ -30,6 +31,7 @@ class CardDeliveryPozitiveTest {
 
         //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Москва");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("div [data-test-id='date'] input").setValue(newCurrentDate);
         $("div [data-test-id='name'] input").setValue("Маша Родионова");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
@@ -53,6 +55,7 @@ class CardDeliveryPozitiveTest {
 
         //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Магас");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("div [data-test-id='date'] input").setValue(newCurrentDate);
         $("div [data-test-id='name'] input").setValue("Маша Родионова");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
@@ -76,6 +79,7 @@ class CardDeliveryPozitiveTest {
 
         //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Магас");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("div [data-test-id='date'] input").setValue(newCurrentDate);
         $("div [data-test-id='name'] input").setValue("Маша-Родионова");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
@@ -99,6 +103,7 @@ class CardDeliveryPozitiveTest {
 
         //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Магас");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("div [data-test-id='date'] input").setValue(newCurrentDate);
         $("div [data-test-id='name'] input").setValue("Родионова-Маша-Владимировна");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
@@ -122,6 +127,7 @@ class CardDeliveryPozitiveTest {
 
         //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Магас");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("div [data-test-id='date'] input").setValue(newCurrentDate);
         $("div [data-test-id='name'] input").setValue("Родионова Маша Владимировна");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
@@ -145,6 +151,7 @@ class CardDeliveryPozitiveTest {
 
         //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Магас");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("div [data-test-id='date'] input").setValue(newCurrentDate);
         $("div [data-test-id='name'] input").setValue("Родионова");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
@@ -168,6 +175,7 @@ class CardDeliveryPozitiveTest {
 
         //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Благовещенск");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("div [data-test-id='date'] input").setValue(newCurrentDate);
         $("div [data-test-id='name'] input").setValue("Родионова");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
