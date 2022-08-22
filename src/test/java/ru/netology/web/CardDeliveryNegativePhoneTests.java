@@ -174,6 +174,8 @@ public class CardDeliveryNegativePhoneTests {
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         //$$("[data-test-id='agreement']").last().click();
         $$(By.className("button__content")).last().click();
-        $("[data-test-id='agreement'] span.checkbox__text").shouldHave(exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных"), Duration.ofSeconds(40));
+        String expected = "#ff5c5c!important";
+        String actual = $("[data-test-id='agreement'] span.checkbox__text").getCssValue("color");
+        Assertions.assertEquals(expected, actual);
     }
 }
