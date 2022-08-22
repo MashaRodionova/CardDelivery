@@ -14,7 +14,7 @@ import org.openqa.selenium.Keys;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-class CardDeliveryNegativeTests {
+class CardDeliveryNegativeCityTests {
 
 
     // проверка валидности поля ГОРОД
