@@ -82,4 +82,50 @@ public class CardDeliveryNegativeDateTests {
         $$(By.className("button__content")).last().click();
         $("[data-test-id='date'] span.input__sub").shouldHave(exactText("Неверно введена дата"), Duration.ofSeconds(40));
     }
+
+    @Test
+    void Test4() {
+        open("http://localhost:9999");
+        Configuration.holdBrowserOpen = true;
+
+        Date currentDate = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.DATE, 5);
+        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("y.DD.mm");
+        String newCurrentDate = formatForCurrentDate.format(c.getTime());
+
+        //заполняем форму, проверяем
+        $("div [data-test-id='city'] input").setValue("Москва");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
+        $("div [data-test-id='date'] input").setValue("32.05.1900");
+        $("div [data-test-id='name'] input").setValue("Маша Родионова");
+        $("div [data-test-id='phone'] input").setValue("+79996663355");
+        $$("[data-test-id='agreement']").last().click();
+        $$(By.className("button__content")).last().click();
+        $("[data-test-id='date'] span.input__sub").shouldHave(exactText("Неверно введена дата"), Duration.ofSeconds(40));
+    }
+
+    @Test
+    void Test5() {
+        open("http://localhost:9999");
+        Configuration.holdBrowserOpen = true;
+
+        Date currentDate = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.DATE, 5);
+        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("y.DD.mm");
+        String newCurrentDate = formatForCurrentDate.format(c.getTime());
+
+        //заполняем форму, проверяем
+        $("div [data-test-id='city'] input").setValue("Москва");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
+        $("div [data-test-id='date'] input").setValue("маша");
+        $("div [data-test-id='name'] input").setValue("Маша Родионова");
+        $("div [data-test-id='phone'] input").setValue("+79996663355");
+        $$("[data-test-id='agreement']").last().click();
+        $$(By.className("button__content")).last().click();
+        $("[data-test-id='date'] span.input__sub").shouldHave(exactText("Неверно введена дата"), Duration.ofSeconds(40));
+    }
 }
