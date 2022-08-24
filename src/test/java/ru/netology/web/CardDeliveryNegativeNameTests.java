@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,22 +17,18 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryNegativeNameTests {
+
+    public String generateDate(int days) {
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+    String planningDate = generateDate(3);
     @Test
     void Test1() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("dd.MM.y");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue("MAsha");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
@@ -42,18 +40,9 @@ public class CardDeliveryNegativeNameTests {
     void Test2() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("dd.MM.y");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue(" ");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
@@ -65,18 +54,9 @@ public class CardDeliveryNegativeNameTests {
     void Test3() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("dd.MM.y");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue("35623");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
@@ -88,18 +68,9 @@ public class CardDeliveryNegativeNameTests {
     void Test4() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("dd.MM.y");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue(" Маша");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
@@ -111,18 +82,9 @@ public class CardDeliveryNegativeNameTests {
     void Test5() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("dd.MM.y");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue("жжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжжж");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
@@ -134,18 +96,9 @@ public class CardDeliveryNegativeNameTests {
     void Test6() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("dd.MM.y");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue("♣☺♂");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
@@ -157,18 +110,9 @@ public class CardDeliveryNegativeNameTests {
     void Test7() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("dd.MM.y");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue("<script>alert(\"I hacked this!\")</script>");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,22 +16,21 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryNegativeDateTests {
+    public String generateDate(int days) {
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+
+    public String generateIncorrectFormatDate(int days) {
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("yyyy.dd.MM"));
+    }
     @Test
     void Test1() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 0);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("dd.MM.y");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
+        String planningDate = generateDate(0);
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue("Маша Родионова");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
@@ -41,18 +42,10 @@ public class CardDeliveryNegativeDateTests {
     void Test2() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 1);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("dd.MM.y");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
+        String planningDate = generateDate(1);
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue("Маша Родионова");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
@@ -64,41 +57,25 @@ public class CardDeliveryNegativeDateTests {
     void Test3() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("y.DD.mm");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
+        String planningDate = generateDate(-1);
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue(newCurrentDate);
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue("Маша Родионова");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
         $$(By.className("button__content")).last().click();
-        $("[data-test-id='date'] span.input__sub").shouldHave(exactText("Неверно введена дата"), Duration.ofSeconds(40));
+        $("[data-test-id='date'] span.input__sub").shouldHave(exactText("Заказ на выбранную дату невозможен"), Duration.ofSeconds(40));
     }
 
     @Test
     void Test4() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("y.DD.mm");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
+        String planningDate = generateIncorrectFormatDate(5);
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("div [data-test-id='date'] input").setValue("32.05.1900");
+        $("div [data-test-id='date'] input").setValue(planningDate);
         $("div [data-test-id='name'] input").setValue("Маша Родионова");
         $("div [data-test-id='phone'] input").setValue("+79996663355");
         $$("[data-test-id='agreement']").last().click();
@@ -110,15 +87,20 @@ public class CardDeliveryNegativeDateTests {
     void Test5() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
+        $("div [data-test-id='city'] input").setValue("Москва");
+        $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
+        $("div [data-test-id='date'] input").setValue("32.05.1900");
+        $("div [data-test-id='name'] input").setValue("Маша Родионова");
+        $("div [data-test-id='phone'] input").setValue("+79996663355");
+        $$("[data-test-id='agreement']").last().click();
+        $$(By.className("button__content")).last().click();
+        $("[data-test-id='date'] span.input__sub").shouldHave(exactText("Неверно введена дата"), Duration.ofSeconds(40));
+    }
 
-        Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 5);
-        SimpleDateFormat formatForCurrentDate = new SimpleDateFormat("y.DD.mm");
-        String newCurrentDate = formatForCurrentDate.format(c.getTime());
-
-        //заполняем форму, проверяем
+    @Test
+    void Test6() {
+        open("http://localhost:9999");
+        Configuration.holdBrowserOpen = true;
         $("div [data-test-id='city'] input").setValue("Москва");
         $("div [data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("div [data-test-id='date'] input").setValue("маша");
@@ -128,4 +110,6 @@ public class CardDeliveryNegativeDateTests {
         $$(By.className("button__content")).last().click();
         $("[data-test-id='date'] span.input__sub").shouldHave(exactText("Неверно введена дата"), Duration.ofSeconds(40));
     }
+
+
 }
